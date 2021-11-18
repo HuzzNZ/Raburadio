@@ -17,9 +17,12 @@
     "react-dom": "17.0.2",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.0",
+    "sharp": "^0.29.2",
+    "state-pool": "^0.6.0",
     "tailwindcss-filters": "^3.0.0"
   },
   "devDependencies": {
+    "@types/react": "^17.0.34",
     "autoprefixer": "^10.4.0",
     "eslint": "7.32.0",
     "eslint-config-next": "12.0.3",

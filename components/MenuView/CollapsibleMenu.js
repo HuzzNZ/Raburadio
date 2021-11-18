@@ -1,5 +1,5 @@
 import {InlineIcon} from "@iconify/react";
-import Menu from "./Menu";
+import MenuContents from "./MenuContents";
 import React, {useEffect, useRef, useState} from "react";
 
 export default function CollapsibleMenu (props) {
@@ -19,11 +19,11 @@ export default function CollapsibleMenu (props) {
     }, [wrapperRef]);
 
     return (
-        <span className={props.className + ' relative inline-flex items-center'}>
+        <span className={props.className + ' relative inline-flex items-center select-none'}>
             <button onClick={() => {setCollapsed(!collapsed)}} className={'inline-block box-border'}>
                 <InlineIcon className={'text-primary'} icon={"ph:dots-three-outline-fill"}/>
             </button>
-            <Menu innerRef={wrapperRef} collapsed={collapsed} options={props.options}/>
+            <MenuContents innerRef={wrapperRef} collapsed={collapsed} {...props}/>
         </span>
     )
 }
