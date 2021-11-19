@@ -1,6 +1,4 @@
-let DownloadFormats;
-
-export default DownloadFormats = {
+const DownloadFormats = {
     'flac': {
         extension: '.flac',
         title: 'FLAC',
@@ -32,3 +30,5 @@ export default DownloadFormats = {
         description: 'High storage-efficiency with low quality loss for music playback.'
     }
 }
+
+export default DownloadFormats

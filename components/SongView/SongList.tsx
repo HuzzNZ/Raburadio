@@ -1,35 +1,18 @@
 import React from "react";
 import SongCard from "./SongCard";
 import Link from "next/link";
+import {Song} from "../../api/interfaces";
+import {List} from "postcss/lib/list";
 
-export default function ListSongs (props) {
+interface ListSongProps {
+    songs: Song[]
+    lines?: number
+    fullAlbumMode?: boolean
+    highlightedId?: string
+    albumId?: string
+}
 
-    // componentDidMount() {
-    //     const query = `
-    //       getAllSongsInAlbum (albumId: "${this.props.albumId}") {
-    //         id
-    //         albumOrder
-    //         titleNat
-    //         titleRom
-    //         artists {
-    //           id
-    //           nameNat
-    //           nameRom
-    //         }
-    //         length
-    //         isInstrumental
-    //         isRadioDrama
-    //       }
-    //     `
-    //     axios.post(
-    //         'http://192.168.1.195:8080/graphql',
-    //         {query: `query { ${query} }`},
-    //         {headers: {"content-type": "application/json"}}
-    //     ).then(res => {
-    //         this.setState({songs: res.data.data.getAllSongsInAlbum})
-    //     })
-    // }
-
+const SongList: React.FC<ListSongProps> = (props) => {
     const songs = props.songs
     const specifiedLines = props.lines || 12
     const fullAlbumMode = props.fullAlbumMode || false
@@ -46,11 +29,11 @@ export default function ListSongs (props) {
             styles.push(fullAlbumMode? "dark:bg-dark-50 bg-gray-50" : "dark:bg-dark-150 bg-gray-150")
         }
 
-        if ((songs[i].id === props.highlighted) && fullAlbumMode) {
+        if ((songs[i].id === props.highlightedId) && fullAlbumMode) {
             isSelected = true
         }
 
-        jsx.push(<SongCard key={songs[i].id} styles={styles.join(" ")} payload={songs[i]} isSelected={isSelected} {...props}/>)
+        jsx.push(<SongCard key={songs[i].id} className={styles.join(" ")} payload={songs[i]} isSelected={isSelected} {...props}/>)
     }
     const diff = songs.length - specifiedLines
     return (
@@ -67,3 +50,5 @@ export default function ListSongs (props) {
         </div>
     )
 }
+
+export default SongList

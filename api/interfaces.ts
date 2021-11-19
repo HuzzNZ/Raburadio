@@ -1,5 +1,5 @@
 interface abc {
-    id?: number
+    id?: string
 }
 
 interface HasArtists {

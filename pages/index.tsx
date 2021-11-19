@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import ListAlbums from "../components/AlbumView/ListAlbums";
+import AlbumList from "../components/AlbumView/AlbumList";
 import graphQL from "../api/graphQL";
 import {GetServerSideProps} from "next";
 import React from "react";
@@ -14,7 +14,7 @@ const Home: React.FC<HomeProps> = ({ albums }) => {
         <div className={'space-y-3'}>
             <Header title={"Home"} icon={"ph:house-bold"}/>
             <h2>Recently Released</h2>
-            <ListAlbums data={albums} lines={4}/>
+            <AlbumList albums={albums} lines={4}/>
         </div>
     )
 }

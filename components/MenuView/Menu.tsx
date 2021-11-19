@@ -2,7 +2,17 @@ import {InlineIcon} from "@iconify/react";
 import MenuContents from "./MenuContents";
 import React, {useEffect, useRef, useState} from "react";
 
-export default function CollapsibleMenu (props) {
+export interface MenuProps {
+    options: string[]
+    linkToCopy?: string
+    fullAlbumMode?: boolean
+}
+
+interface CollapsibleMenuProps extends MenuProps {
+    className?: string
+}
+
+const Menu: React.FC<CollapsibleMenuProps> = (props) => {
     const wrapperRef = useRef(null);
     const [collapsed, setCollapsed] = useState(true)
 
@@ -27,3 +37,5 @@ export default function CollapsibleMenu (props) {
         </span>
     )
 }
+
+export default Menu

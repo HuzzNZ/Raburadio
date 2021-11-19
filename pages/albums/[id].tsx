@@ -5,7 +5,7 @@ import { InlineIcon } from "@iconify/react";
 
 import graphQL from "../../api/graphQL";
 import RenderArtist from "../../components/Tools/RenderArtist";
-import ListSongs from "../../components/SongView/ListSongs";
+import SongList from "../../components/SongView/SongList";
 import Custom404 from "../404";
 import { useRouter } from "next/router";
 import {GetServerSideProps} from "next";
@@ -18,7 +18,7 @@ export interface FullAlbumProps {
 const FullAlbum: React.FC<FullAlbumProps> = ({ album }) => {
     const [useNative] = useGlobalState('useNative')
     const { query } = useRouter()
-    const highlighted = query.song || null
+    const highlighted: string = String(query.song) || null
 
     if (!album) return <Custom404/>
 
@@ -58,7 +58,7 @@ const FullAlbum: React.FC<FullAlbumProps> = ({ album }) => {
                     </div>
                 </div>
             </div>
-            <ListSongs songs={album.songs} fullAlbumMode={true} highlighted={highlighted} albumId={album.id}/>
+            <SongList songs={album.songs} fullAlbumMode={true} highlightedId={highlighted} albumId={album.id}/>
             <div className={'text-secondary dark:text-secondary text-sm font-light flex flex-col'}>
                 <span>Released on {releaseDate.toDateString()}</span>
                 <span>{album.songs.length} Songs, {Math.ceil(totalLength / 60)} Minutes</span>

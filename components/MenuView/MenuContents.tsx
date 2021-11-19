@@ -2,9 +2,15 @@ import React, {useEffect, useState} from "react";
 import {InlineIcon} from "@iconify/react";
 import {useGlobalState} from "state-pool";
 import DownloadFormats from "../Tools/DownloadFormats";
+import {MenuProps} from "./Menu";
 
-export default function MenuContents (props) {
-    const [collapsed, setCollapsed] = useState(props.collapsed)
+interface MenuContentProps extends MenuProps {
+    innerRef: React.MutableRefObject<any>
+    collapsed: boolean
+}
+
+const MenuContents:React.FC<MenuContentProps> = (props) => {
+    const [collapsed, setCollapsed] = useState<boolean>(props.collapsed)
     const [defaultDownloadFormat] = useGlobalState('defaultDownloadFormat')
 
     useEffect(() => {
@@ -54,3 +60,5 @@ export default function MenuContents (props) {
         </div>
     )
 }
+
+export default MenuContents
