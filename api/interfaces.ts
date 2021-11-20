@@ -26,7 +26,7 @@ interface Artist extends abc {
 }
 
 interface Song extends TitledObject, HasArtists {
-    inAlbum?: Album[]
+    inAlbum?: Album
     albumOrder?: number
     length?: number
     isInstrumental?: boolean

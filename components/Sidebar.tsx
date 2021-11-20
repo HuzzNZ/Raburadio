@@ -26,7 +26,7 @@ export default function Sidebar () {
             )
         }
         setDownloadOptions(downloadOptionsJsx)
-    }, [defaultDownloadFormat, setDefaultDownloadFormat])
+    }, [defaultDownloadFormat])
 
 
     return (

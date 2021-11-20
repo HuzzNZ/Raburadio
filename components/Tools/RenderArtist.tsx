@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 import {Artist, Member} from "../../api/interfaces";
 import graphQL from "../../api/graphQL";
-import {useGlobalState} from "state-pool";
+import {useNative} from "../Hooks/useNative";
 
 interface RenderArtistProps {
     artists: Artist[]
 }
 
 const RenderArtist: React.FC<RenderArtistProps> = ({artists}) => {
-    const [useNative] = useGlobalState('useNative')
+    const native = useNative()
     const [members, setMembers] = useState<Member[]>([])
 
     const getMembers = (artistId): void => {
@@ -28,6 +28,7 @@ const RenderArtist: React.FC<RenderArtistProps> = ({artists}) => {
             setMembers(data)
         })
     }
+
     if (artists.length === 0) {
         return null
     }
@@ -41,13 +42,13 @@ const RenderArtist: React.FC<RenderArtistProps> = ({artists}) => {
                 return <span>Loading...</span>
             }
             const member = members[0]
-            const firstName = useNative? member.firstNameNat : member.firstNameRom
-            const lastName = useNative? member.lastNameNat : member.lastNameRom
-            artistName = member.foreignNameOrder? `${firstName}${useNative? '・':' '}${lastName}` : `${lastName}${useNative? '':' '}${firstName}`
+            const firstName = native? member.firstNameNat : member.firstNameRom
+            const lastName = native? member.lastNameNat : member.lastNameRom
+            artistName = member.foreignNameOrder? `${firstName}${native? '・':' '}${lastName}` : `${lastName}${native? '':' '}${firstName}`
         } else if (artist.nameRom === "") {
             artistName = artist.nameNat
         } else {
-            artistName = useNative? artist.nameNat : artist.nameRom
+            artistName = native? artist.nameNat : artist.nameRom
         }
         artistElements.push(<span key={artist.id.toString()} id={artist.id.toString()}>{artistName}</span>)
         if (isFirst && artists.length > 1) {

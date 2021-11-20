@@ -1,11 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import RenderArtist from "../Tools/RenderArtist";
 import SongList from "../SongView/SongList";
 import Menu from "../MenuView/Menu";
-import {useGlobalState} from "state-pool";
 import {Album} from "../../api/interfaces";
+import {useBaseURL} from "../Hooks/useBaseURL";
+import {useNative} from "../Hooks/useNative";
+import {getLocalizedSubtitle, getLocalizedTitle} from "../Tools/Localization";
 
 interface AlbumCardProps {
     album: Album | null
@@ -13,17 +15,15 @@ interface AlbumCardProps {
 }
 
 const AlbumCard: React.FC<AlbumCardProps> = ({ album, lines }) => {
-    const [baseURL, setBaseURL] = useState<string>('')
-    const [useNative] = useGlobalState('useNative')
-    
-    useEffect(() => {
-        setBaseURL(window.location.host)
-    }, [])
+    const baseURL = useBaseURL()
+    const native = useNative()
     
     if (!album) return null
     
-    const mainTitle = (album.titleRom === "" || useNative)? album.titleNat : album.titleRom
+    const title = getLocalizedTitle(album.titleNat, album.titleRom, native)
+    const subtitle = getLocalizedSubtitle(album.titleRom, native)
     const imgUrl = `/albums/${album.id}.jpg`
+
     return (
         <div className={'h-max w-144 relative mb-6 mr-6'}>
             <Link href={`/albums/[id]`} as={`/albums/${album.id}`} passHref>
@@ -41,12 +41,12 @@ const AlbumCard: React.FC<AlbumCardProps> = ({ album, lines }) => {
                         <div className={'inline-flex w-full text-xl align-middle'}>
                             <span className={'inline-block flex-grow truncate mr-2'}>
                                 <p className={'hover:underline inline-block'}>
-                                    <Link href={`/albums/[id]`} as={`/albums/${album.id}`} >{mainTitle}</Link>
+                                    <Link href={`/albums/[id]`} as={`/albums/${album.id}`} >{title}</Link>
                                 </p>
                             </span>
                             <Menu className={'flex-none text-md inline-block'} options={['Copy Link']} linkToCopy={`${baseURL}/albums/${album.id}`}/>
                         </div>
-                        { (album.titleRom === "" || useNative)? null : <p className={'dark:text-secondary text-xs text-secondary font-light tracking-wide truncate'}>{album.titleNat}</p> }
+                        { subtitle? null : <p className={'dark:text-secondary text-xs text-secondary font-light tracking-wide truncate'}>{album.titleNat}</p> }
                         <div>
                             <p className={'inline-block text-md text-primary dark:text-primary'}>{<RenderArtist artists={album.artists}/>}</p>
                             <p className={'inline-block text-secondary dark:text-secondary mx-1'}>·</p>

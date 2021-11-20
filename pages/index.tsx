@@ -19,7 +19,7 @@ const Home: React.FC<HomeProps> = ({ albums }) => {
     )
 }
 
-export const getServerSideProps:GetServerSideProps = async ({ res }) => {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     res.setHeader(
         'Cache-Control',
         'public, s-maxage=900, stale-while-revalidate=3600'
