@@ -2,7 +2,6 @@ import React from "react";
 import SongCard from "./SongCard";
 import Link from "next/link";
 import {Song} from "../../api/interfaces";
-import {List} from "postcss/lib/list";
 
 interface ListSongProps {
     songs: Song[]
@@ -33,7 +32,7 @@ const SongList: React.FC<ListSongProps> = (props) => {
             isSelected = true
         }
 
-        jsx.push(<SongCard key={songs[i].id} className={styles.join(" ")} payload={songs[i]} isSelected={isSelected} {...props}/>)
+        jsx.push(<SongCard key={songs[i].id} className={styles.join(" ")} song={songs[i]} isSelected={isSelected} {...props}/>)
     }
     const diff = songs.length - specifiedLines
     return (

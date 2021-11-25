@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {Artist, Song} from "../../api/interfaces";
 import {useBaseURL} from "../Hooks/useBaseURL";
 import {useNative} from "../Hooks/useNative";

@@ -8,7 +8,7 @@ import {InlineIcon} from "@iconify/react";
 import {Song} from "../../api/interfaces";
 
 interface SongCardProps {
-    payload: Song
+    song: Song
     className?: string
     isSelected?: boolean
     fullAlbumMode?: boolean
@@ -23,21 +23,20 @@ const SongCard: React.FC<SongCardProps> = (props) => {
         setBaseURL(window.location.host)
     }, [])
 
-    const payload = props.payload
-    if (payload === undefined) return null
+    const song = props.song
+    if (song === undefined) return null
     const fullAlbumMode = props.fullAlbumMode
-    const title = payload.titleRom !== ""? (useNative? payload.titleNat : payload.titleRom) : payload.titleNat
+    const title = song.titleRom !== ""? (useNative? song.titleNat : song.titleRom) : song.titleNat
     return (
         <div className={props.className}>
             <div className={'flex h-full justify-between items-center text-sm ' + (fullAlbumMode? 'px-5':'px-3')}>
                 <span className={(fullAlbumMode? 'space-x-5' : 'space-x-3') + ' flex items-center'}>
-                    <p className={"inline-block " + (fullAlbumMode? "w-5":"w-3.5") + " text-secondary dark:text-secondary"}>{payload.albumOrder}</p>
+                    <p className={"inline-block " + (fullAlbumMode? "w-5":"w-3.5") + " text-secondary dark:text-secondary"}>{song.albumOrder}</p>
                     <p className={"inline-block max-w-1/2 font-light overflow-ellipsis"}>{title}</p>
                     {
-                        payload.artists.length === 0? null :
-                            <span className={"inline-block italic font-light text-secondary"}>
-                                <RenderArtist artists={payload.artists}/>
-                            </span>
+                        song.artists.length === 0? null : <span className={"inline-block italic font-light text-secondary"}>
+                            <RenderArtist artists={song.artists}/>
+                        </span>
                     }
                     {
                         props.isSelected? <p className={'text-md text-primary dark:text-primary'}>
@@ -47,12 +46,12 @@ const SongCard: React.FC<SongCardProps> = (props) => {
                     }
                 </span>
                 <span className={(fullAlbumMode? 'space-x-5' : 'space-x-3') + ' flex-none flex items-center'}>
-                    {payload.isInstrumental ? <InstrumentalTag/> : null}
-                    {payload.isRadioDrama? <RadioDramaTag/> : null}
+                    {song.isInstrumental ? <InstrumentalTag/> : null}
+                    {song.isRadioDrama? <RadioDramaTag/> : null}
                     <p className={"inline-block w-9 font-light text-secondary dark:text-secondary text-center"}>
-                        {Math.floor(payload.length / 60)}:{(payload.length % 60+100).toString().slice(-2)}
+                        {Math.floor(song.length / 60)}:{(song.length % 60+100).toString().slice(-2)}
                     </p>
-                    <Menu className={'text-md ml-2'} options={['Copy Link', 'Download']} fullAlbumMode={fullAlbumMode} linkToCopy={`${baseURL}/albums/${props.albumId}?song=${payload.id}`}/>
+                    <Menu className={'text-md ml-2'} options={['Copy Link', 'Download']} fullAlbumMode={fullAlbumMode} linkToCopy={`${baseURL}/albums/${props.albumId}?song=${song.id}`}/>
                 </span>
             </div>
         </div>

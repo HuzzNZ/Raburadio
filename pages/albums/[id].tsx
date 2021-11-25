@@ -10,6 +10,7 @@ import Custom404 from "../404";
 import { useRouter } from "next/router";
 import {GetServerSideProps} from "next";
 import {Album} from "../../api/interfaces";
+import {getUTCReleaseDate} from "../../components/Tools/Time";
 
 export interface FullAlbumProps {
     album: Album
@@ -60,7 +61,7 @@ const FullAlbum: React.FC<FullAlbumProps> = ({ album }) => {
             </div>
             <SongList songs={album.songs} fullAlbumMode={true} highlightedId={highlighted} albumId={album.id}/>
             <div className={'text-secondary dark:text-secondary text-sm font-light flex flex-col'}>
-                <span>Released on {releaseDate.toDateString()}</span>
+                <span>Released on {getUTCReleaseDate(releaseDate)}</span>
                 <span>{album.songs.length} Songs, {Math.ceil(totalLength / 60)} Minutes</span>
                 <span>{album.catalog}</span>
             </div>

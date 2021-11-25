@@ -21,7 +21,7 @@ const AlbumCard: React.FC<AlbumCardProps> = ({ album, lines }) => {
     if (!album) return null
     
     const title = getLocalizedTitle(album.titleNat, album.titleRom, native)
-    const subtitle = getLocalizedSubtitle(album.titleRom, native)
+    const subtitle = getLocalizedSubtitle(album.titleNat, album.titleRom, native)
     const imgUrl = `/albums/${album.id}.jpg`
 
     return (
@@ -46,7 +46,7 @@ const AlbumCard: React.FC<AlbumCardProps> = ({ album, lines }) => {
                             </span>
                             <Menu className={'flex-none text-md inline-block'} options={['Copy Link']} linkToCopy={`${baseURL}/albums/${album.id}`}/>
                         </div>
-                        { subtitle? null : <p className={'dark:text-secondary text-xs text-secondary font-light tracking-wide truncate'}>{album.titleNat}</p> }
+                        { subtitle? <p className={'dark:text-secondary text-xs text-secondary font-light tracking-wide truncate'}>{subtitle}</p> : null }
                         <div>
                             <p className={'inline-block text-md text-primary dark:text-primary'}>{<RenderArtist artists={album.artists}/>}</p>
                             <p className={'inline-block text-secondary dark:text-secondary mx-1'}>·</p>
