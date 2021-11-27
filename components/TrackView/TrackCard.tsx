@@ -21,8 +21,8 @@ const TrackCard: React.FC<TrackCardProps> = ({ track }) => {
     const title = getLocalizedTitle(track.titleNat, track.titleRom, native)
     const inAlbumTitle = getLocalizedTitle(track.inAlbum.titleNat, track.inAlbum.titleRom, native)
     const artists: Artist[] = track.artists.length > 0? track.artists : track.inAlbum.artists
-    const imgUrl = `/albums/${track.inAlbum.id}.jpg`
-    const trackUrl = `/albums/${track.inAlbum.id}?song=${track.id}`
+    const imgUrl = `/cds/${track.inAlbum.id}.jpg`
+    const trackUrl = `/cds/${track.inAlbum.id}?song=${track.id}`
 
     return (
         <div className={'h-24 w-96 mb-6 mr-6 bg-gray-100 dark:bg-dark-100 transition duration-300 shadow-lg rounded-2xl flex flex-row'}>
@@ -46,7 +46,7 @@ const TrackCard: React.FC<TrackCardProps> = ({ track }) => {
                 <div className={'space-x-1 text-sm truncate'}>
                     <p className={'inline-block text-secondary dark:text-secondary'}>From</p>
                     <p className={'inline-block text-secondary dark:text-secondary hover:underline'}>
-                        <Link href={'/albums/[id]'} as={`/albums/${track.inAlbum.id}`}>{inAlbumTitle}</Link>
+                        <Link href={'/cds/[id]'} as={`/cds/${track.inAlbum.id}`}>{inAlbumTitle}</Link>
                     </p>
                 </div>
             </div>

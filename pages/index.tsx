@@ -22,7 +22,7 @@ const Home: React.FC<HomeProps> = ({ albums, artists }) => {
     return (
         <div className={'space-y-3'}>
             <Header title={"Home"} icon={"ph:house-bold"}/>
-            <Subheader title={'Recently released albums'} linkTitle={'View all albums'} linkURL={"#"}/>
+            <Subheader title={'Recently released CDs'} linkTitle={'View all CDs'} linkURL={"#"}/>
             <AlbumList albums={albums} lines={4}/>
             {artists.map(({artist, songs}) => {
                 return (<div key={artist.id} className={"space-y-3"}>

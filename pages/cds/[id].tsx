@@ -33,7 +33,7 @@ const FullAlbum: React.FC<FullAlbumProps> = ({ album }) => {
         <div className={'space-y-6'}>
             <div className={'mt-14 h-60 flex'}>
                 <div className={'h-full w-60 relative flex-none'}>
-                    <Image alt={"Album Cover"} className={'rounded-2xl'} src={`/albums/${album.id}.jpg`} layout={'fill'} objectFit="contain" priority/>
+                    <Image alt={"Album Cover"} className={'rounded-2xl'} src={`/cds/${album.id}.jpg`} layout={'fill'} objectFit="contain" priority/>
                 </div>
                 <div className={'ml-8 flex flex-col flex-grow'}>
                     <div className={'flex items-center flex-grow'}>

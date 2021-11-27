@@ -54,7 +54,7 @@ const SongCard: React.FC<SongCardProps> = (props) => {
                     <p className={"inline-block w-9 font-light text-secondary dark:text-secondary text-center"}>
                         {Math.floor(song.length / 60)}:{(song.length % 60+100).toString().slice(-2)}
                     </p>
-                    <Menu className={'text-md ml-2'} options={['Copy Link', 'Download']} fullAlbumMode={fullAlbumMode} linkToCopy={`${baseURL}/albums/${props.albumId}?song=${song.id}`}/>
+                    <Menu className={'text-md ml-2'} options={['Copy Link', 'Download']} fullAlbumMode={fullAlbumMode} linkToCopy={`${baseURL}/cds/${props.albumId}?song=${song.id}`}/>
                 </span>
             </div>
         </div>

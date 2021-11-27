@@ -22,11 +22,11 @@ const AlbumCard: React.FC<AlbumCardProps> = ({ album, lines }) => {
     
     const title = getLocalizedTitle(album.titleNat, album.titleRom, native)
     const subtitle = getLocalizedSubtitle(album.titleNat, album.titleRom, native)
-    const imgUrl = `/albums/${album.id}.jpg`
+    const imgUrl = `/cds/${album.id}.jpg`
 
     return (
         <div className={'h-max w-144 relative mb-6 mr-6'}>
-            <Link href={`/albums/[id]`} as={`/albums/${album.id}`} passHref>
+            <Link href={`/cds/[id]`} as={`/cds/${album.id}`} passHref>
                 <a className={'block h-26 w-26 absolute z-50 transform rotate-355 rounded-2xl shadow-lg'}>
                     <div className={'w-full h-full relative'}>
                         <Image src={imgUrl} className={'rounded-2xl'} layout={'fill'} objectFit="cover" alt={'Album Cover'}/>
@@ -41,10 +41,10 @@ const AlbumCard: React.FC<AlbumCardProps> = ({ album, lines }) => {
                         <div className={'inline-flex w-full text-xl align-middle'}>
                             <span className={'inline-block flex-grow truncate mr-2'}>
                                 <p className={'hover:underline inline-block'}>
-                                    <Link href={`/albums/[id]`} as={`/albums/${album.id}`} >{title}</Link>
+                                    <Link href={`/cds/[id]`} as={`/cds/${album.id}`} >{title}</Link>
                                 </p>
                             </span>
-                            <Menu className={'flex-none text-md inline-block'} options={['Copy Link']} linkToCopy={`${baseURL}/albums/${album.id}`}/>
+                            <Menu className={'flex-none text-md inline-block'} options={['Copy Link']} linkToCopy={`${baseURL}/cds/${album.id}`}/>
                         </div>
                         { subtitle? <p className={'dark:text-secondary text-xs text-secondary font-light tracking-wide truncate'}>{subtitle}</p> : null }
                         <div>

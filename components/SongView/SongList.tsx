@@ -42,8 +42,8 @@ const SongList: React.FC<SongListProps> = (props) => {
             {(specifiedLines >= songs.length || fullAlbumMode)? null :
                 <p className={'ml-3 mt-1 text-sm text-secondary dark:text-secondary font-light'}>
                     and {diff} more track{diff === 1? '':'s'}...
-                    <Link href={`/albums/[id]`} as={`/albums/${props.albumId || 404}`} passHref>
-                        <a className={'text-xs ml-2 hover:underline text-primary dark:text-primary'}>View Full Album</a>
+                    <Link href={`/cds/[id]`} as={`/cds/${props.albumId || 404}`} passHref>
+                        <a className={'text-xs ml-2 hover:underline text-primary dark:text-primary'}>View Full CD</a>
                     </Link>
                 </p>
             }
