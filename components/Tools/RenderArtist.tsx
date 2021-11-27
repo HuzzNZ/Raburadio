@@ -50,10 +50,10 @@ const RenderArtist: React.FC<RenderArtistProps> = ({artists}) => {
         } else {
             artistName = native? artist.nameNat : artist.nameRom
         }
-        artistElements.push(<span key={artist.id.toString()} id={artist.id.toString()}>{artistName}</span>)
+        artistElements.push(<span key={artist.id} id={artist.id.toString()}>{artistName}</span>)
         if (isFirst && artists.length > 1) {
             isFirst = false
-            artistElements.push((<span>, </span>))
+            artistElements.push((<span key={'comma-after-'+artist.id}>, </span>))
         }
     }
     return (
