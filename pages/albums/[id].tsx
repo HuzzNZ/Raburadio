@@ -59,7 +59,7 @@ const FullAlbum: React.FC<FullAlbumProps> = ({ album }) => {
                     </div>
                 </div>
             </div>
-            <SongList songs={album.songs} fullAlbumMode={true} highlightedId={highlighted} albumId={album.id}/>
+            <SongList songs={album.songs} albumArtists={album.artists} fullAlbumMode={true} highlightedId={highlighted} albumId={album.id}/>
             <div className={'text-secondary dark:text-secondary text-sm font-light flex flex-col'}>
                 <span>Released on {getUTCReleaseDate(releaseDate)}</span>
                 <span>{album.songs.length} Songs, {Math.ceil(totalLength / 60)} Minutes</span>

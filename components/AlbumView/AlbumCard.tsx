@@ -55,7 +55,7 @@ const AlbumCard: React.FC<AlbumCardProps> = ({ album, lines }) => {
                     </div>
                 </div>
                 <div className={'p-2'}>
-                    <SongList songs={album.songs} lines={lines} albumId={album.id}/>
+                    <SongList songs={album.songs} lines={lines} albumId={album.id} albumArtists={album.artists}/>
                 </div>
             </div>
         </div>

@@ -5,10 +5,11 @@ import { InstrumentalTag, RadioDramaTag } from "./SongTags"
 import Menu from "../MenuView/Menu";
 import {useGlobalState} from "state-pool";
 import {InlineIcon} from "@iconify/react";
-import {Song} from "../../api/interfaces";
+import {Artist, Song} from "../../api/interfaces";
 
 interface SongCardProps {
     song: Song
+    albumArtists: Artist[]
     className?: string
     isSelected?: boolean
     fullAlbumMode?: boolean
@@ -27,6 +28,7 @@ const SongCard: React.FC<SongCardProps> = (props) => {
     if (song === undefined) return null
     const fullAlbumMode = props.fullAlbumMode
     const title = song.titleRom !== ""? (useNative? song.titleNat : song.titleRom) : song.titleNat
+
     return (
         <div className={props.className}>
             <div className={'flex h-full justify-between items-center text-sm ' + (fullAlbumMode? 'px-5':'px-3')}>
@@ -34,9 +36,10 @@ const SongCard: React.FC<SongCardProps> = (props) => {
                     <p className={"inline-block " + (fullAlbumMode? "w-5":"w-3.5") + " text-secondary dark:text-secondary"}>{song.albumOrder}</p>
                     <p className={"inline-block max-w-1/2 font-light overflow-ellipsis"}>{title}</p>
                     {
-                        song.artists.length === 0? null : <span className={"inline-block italic font-light text-secondary"}>
-                            <RenderArtist artists={song.artists}/>
-                        </span>
+                        ((JSON.stringify(props.albumArtists) === JSON.stringify(song.artists)) || (song.artists.length === 0))? null :
+                            <span className={"inline-block italic font-light text-secondary"}>
+                                <RenderArtist artists={song.artists}/>
+                            </span>
                     }
                     {
                         props.isSelected? <p className={'text-md text-primary dark:text-primary'}>

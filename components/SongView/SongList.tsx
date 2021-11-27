@@ -1,17 +1,18 @@
 import React from "react";
 import SongCard from "./SongCard";
 import Link from "next/link";
-import {Song} from "../../api/interfaces";
+import {Artist, Song} from "../../api/interfaces";
 
-interface ListSongProps {
+interface SongListProps {
     songs: Song[]
+    albumArtists: Artist[]
     lines?: number
     fullAlbumMode?: boolean
     highlightedId?: string
     albumId?: string
 }
 
-const SongList: React.FC<ListSongProps> = (props) => {
+const SongList: React.FC<SongListProps> = (props) => {
     const songs = props.songs
     const specifiedLines = props.lines || 12
     const fullAlbumMode = props.fullAlbumMode || false

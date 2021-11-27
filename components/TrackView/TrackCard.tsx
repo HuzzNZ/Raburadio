@@ -30,19 +30,18 @@ const TrackCard: React.FC<TrackCardProps> = ({ track }) => {
                 <Image src={imgUrl} className={'rounded-xl'} layout={'fill'} objectFit={"cover"} alt={'Album Cover'}/>
             </div>
             <div className={"w-72 pl-2 pr-4 py-3"}>
-                <div className={'max-w-full inline-flex w-full text-lg align-middle'}>
-                    <span className={'inline-block flex-grow truncate mr-2'}>
+                <div className={'max-w-full inline-flex w-full text-lg align-middle mb-1'}>
+                    <span className={'inline-block flex-grow mr-2 truncate'}>
                         <p className={'hover:underline inline-block'}>
                             <Link href={trackUrl}>{title}</Link>
                         </p>
                     </span>
-                    <Menu className={'flex-none text-md inline-block'} options={['Copy Link']} linkToCopy={`${baseURL}${trackUrl}`}/>
+                    <Menu className={'flex-none text-md inline-block'} options={['Copy Link', 'Download']} linkToCopy={`${baseURL}${trackUrl}`}/>
                 </div>
-                <div className={'space-x-1 text-sm truncate'}>
-                    <p className={'inline-block text-secondary dark:text-secondary'}>Song by</p>
-                    <p className={'inline-block text-primary dark:text-primary'}>{<RenderArtist artists={artists}/>}</p>
-                    <p className={'inline-block text-secondary dark:text-secondary'}>·</p>
-                    <p className={'inline-block text-secondary dark:text-secondary'}>{(new Date(track.inAlbum.releaseDate)).getUTCFullYear()}</p>
+                <div className={'space-x-1 max-w-full text-sm truncate'}>
+                    <p className={'text-secondary dark:text-secondary truncate max-w-full min-w-0'}>
+                        Song by <span className={'text-primary dark:text-primary'}>{<RenderArtist artists={artists}/>}</span>
+                    </p>
                 </div>
                 <div className={'space-x-1 text-sm truncate'}>
                     <p className={'inline-block text-secondary dark:text-secondary'}>From</p>
