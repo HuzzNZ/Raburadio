@@ -7,6 +7,7 @@ import {AppProps} from "next/app";
 store.setState('useNative', false, {persist: true})
 store.setState('useDarkMode', true, {persist: true})
 store.setState('defaultDownloadFormat', 'mp3-320', {persist: true})
+store.setState('pageLimit', 2, {persist: true})
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     const [useDarkMode] = useGlobalState('useDarkMode')
